@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Javascript course for a Total Novice (beginner)</title>  
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src=""></script>
+    <style>
+        @import "compass/css3";
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 14px/1 'Open Sans', sans-serif;
+  color: #555;
+  background: #e5e5e5;
+}
+
+.container {
+  width: 640px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.image {
+  width: 200px;
+  height: 150px;
+	display: block;
+	object-fit: cover;
+	transition: transform 400ms ease-out;
+  margin: 10px;
+}
+img {
+  max-width:100%;
+}
+
+h1 {
+  margin: 40px 0;
+  font-size: 24px;
+  text-align: center;
+}
+</style>
+</head> 
+
+<body>  
+    <h1>Image Gallery</h1>
+    <div class="container">
+      <div class="images">
+
+      </div>
+    </div>
+<script>
+//display patterns
+
+const images = [
+    {path:"images/first-image.jpeg", alt: "image"},
+    {path:"images/third-image.jpg", alt: "image"},
+    {path:"images/second-image.jpg", alt: "image"},
+    {path:"images/fouth-image.png", alt: "image"},
+];
+
+//create a single display of image
+const makeImageUI = image => `<div><img class="image" src="${image.path}" alt="${image.alt}"></div>`
+
+//repeate the single display to create multiple items
+const makeImagesUI = images => {
+    return images.map( (image) => makeImageUI(image) )
+}
+
+const imagesUI = makeImagesUI(images)
+const gallery = document.querySelector('.images')
+gallery.innerHTML = imagesUI.join(' ')
+      
+</script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Javascript course for a Total Novice (beginners)</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bootstrap 4 Book/eBook Landing Page Template For Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+    <style>
+      body {
+  color: #fff;
+  background-color: #333;
+  font-family: Montserrat, sans-serif;
+}
+
+.btn {
+  background-color: #fff;
+  color: #000;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+
+.btn:hover {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #2098d1;
+  background-color: #2098d1;
+  color: #000;
+  ;
+}
+
+
+/* main section where the magic will be */
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.container p {
+  margin-top: 20px;
+}
+
+
+/* quotes are here */
+
+.quote {
+  max-width: 800px;
+  min-height: 150px;
+  text-align: center;
+  color: #000;
+  background-color: #f9f9f9;
+  float: none;
+  margin: 100px auto;
+  border: 5px solid black;
+  border-radius: 5px;
+  font-size: 1.3em;
+}
+
+    </style>
+</head> 
+
+<body>  
+
+
+  <div class="container">
+    <h1>Random Quote Generator</h1>
+      <div class="quote">
+        
+      </div>
+  </div>
+
+     
+<script>
+
+    const qouteUI = document.querySelector('.quote');
+    const qoutes = [
+        {text: "There is no solution; everything is a compromise", author: "Ayobami"},
+        {text: "There is sense in nonsense", author: "Wale"},
+        {text: "Simple is the smallest unit of complex", author: "Einstein"},
+        {text: "That is really amazing", author: "Tobi"},
+        {text: "It is great to get things done", author: "Prosper"}
+    ];
+    
+    const time = 2000;
+    let currentQoute = 0;
+    const lastQoute = qoutes.length - 1;
+
+    const display = (qoute) => {
+      qouteUI.innerHTML = `<div class="qoute">
+        <p class="quote-text">${qoute.text}</p>
+        <p class="quote-author">${qoute.author}</p>
+      </div>`
+    }
+    
+    const slide = (_) => {
+      display(qoutes[currentQoute]);
+      if(currentQoute < lastQoute) {
+        currentQoute++;
+      } else {
+        currentQoute = 0;
+      }
+      setTimeout("slide()", time);
+    }
+
+    window.onload = slide
+   </script>
+</body>
+</html>

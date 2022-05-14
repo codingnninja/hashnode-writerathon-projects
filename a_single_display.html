@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Javascript course for a Total Novice (beginner)</title>  
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src=""></script>
+    <style>
+        body {
+    color: #fff;
+    background-color: #333;
+    font-family: Montserrat, sans-serif;
+  }
+  
+  .btn {
+    background-color: #fff;
+    color: #000;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-property: color, background-color;
+    transition-property: color, background-color;
+  }
+  
+  .btn:hover {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    background-color: #2098d1;
+    background-color: #2098d1;
+    color: #000;
+    ;
+  }
+  
+  
+  /* main section where the magic will be */
+  
+  .main {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .main p {
+    margin-top: 20px;
+  }
+  
+  
+  /* quotes are here */
+  
+  .supporting {
+    max-width: 800px;
+    min-height: 150px;
+    text-align: center;
+    color: #000;
+    background-color: #f9f9f9;
+    float: none;
+    margin: 100px auto;
+    border: 5px solid black;
+    border-radius: 5px;
+  }
+  
+  .message {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    text-align: center;
+  }
+  
+  
+      </style>
+</head> 
+
+<body>  
+
+    <div class="main">
+        <h1>A Quote</h1>
+        <div class="supporting">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8 message quote-container">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<script>
+//display patterns
+
+    const qoute = 'When things get out wrong don\'t think all is gone'
+    const qouteContainer = document.querySelector('.quote-container');
+    qouteContainer.innerHTML = qoute;
+
+</script>
+</body>
+</html>

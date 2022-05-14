@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Javascript course for a Total Novice (beginner)</title>  
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src=""></script>
+    <style>
+     
+.container {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container >h2{
+  padding: 10px 35px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(233, 201, 174);
+  text-align: center;
+  color: rgb(192, 231, 243);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.counter {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+}
+
+.counter-number {
+  font-size: 150px;
+  color: white;
+}
+
+.count-btns{
+  padding: 10px;
+  width: auto;
+  background-color: rgb(85, 53, 2);
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  border: 2px solid rgb(1, 250, 237);
+  color: white;
+  outline: none;
+}
+
+.count-btns:hover{
+  background-color: rgb(133, 70, 42);
+}
+
+    </style>
+</head> 
+
+<body>  
+    <div class="container">
+      <h2> Counter application</h2>
+      <div class="counter">
+        <div class="counter-number counter"> 0 </div>
+        <button class="count-btns" id="down"> Decrement </button>
+        <button class="count-btns" id="up"> Increment </button>   
+      </div>
+    </div>
+
+<script>
+ const counterView = document.querySelector(".counter-number");
+ const upButton = document.getElementById("up");
+ const downButton = document.getElementById("down");
+
+ let counter = 0;
+
+ const display = (counter) => {
+     counterView.innerHTML = counter;
+ }
+
+ const left = (decreament) => {
+    if( counter <= 0) { 
+        return "Number cannot be less than zero"
+    }
+    counter = counter + decreament;
+ }
+
+const right = (increament) => {
+   counter = counter + increament;
+ }
+
+const next = (_) => right(1);
+const previous = (_) => left(-1);
+
+
+upButton.addEventListener('click', () => {
+    next();
+    display(counter);
+})
+
+downButton.addEventListener('click', () => {
+    previous();
+    display(counter);
+})
+      
+</script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Javascript course for a Total Novice (beginner)</title>  
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  padding: 0 0.5rem;
+  height: 100vh;
+  width: 400px;
+}
+
+.image {
+  width: 100%;
+  height: 32rem;
+  display: block;
+  margin: auto;
+  border: 5px solid #222;
+  object-fit: cover;
+}
+
+.pagination {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  justify-content: center;
+  align-items: center;
+}
+
+.image__item {
+  width: 100%;
+  height: 8rem;
+  display: block;
+  margin: auto;
+  margin-bottom: 0.5rem;
+  border: 5px solid #222;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.active {
+  border: 3px solid red; 
+}
+
+.loader {
+  text-align: center;
+  margin-top: 20%;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+.animate-entrance {
+  animation: BounceIn 0.8s;
+}
+
+@keyframes BounceIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
+
+</head> 
+
+<body>  
+
+  <main>
+    <div class="image-container">
+
+    </div>
+    <div class="pagination"></div>
+    <audio id="audio" src="/beep-02.mp3" autoplay="false" ></audio>
+    <audio id="audio2" src="/beep-08b.mp3" autoplay="false" ></audio>
+  </main>
+  <script>
+
+const images = [
+    {path:"images/first-image.jpeg", alt: "image"},
+    {path:"images/third-image.jpg", alt: "image"},
+    {path:"images/second-image.jpg", alt: "image"},
+    {path:"images/fouth-image.png", alt: "image"},
+    {path:"images/4 cardinal points.jpg", alt: "image"}
+];
+
+let currentImageIndex = 0;
+let lastSlide = images.length - 1;;
+const image_gallery = document.querySelector(".image-container")
+const image_container = document.querySelector(".pagination")
+const loading = '<h1 class="loader">Loading...</h1>';
+
+const display = (index) => {
+  const image = images[index];
+  image_gallery.innerHTML = `<img src="${image.path}" class="animate-entrance image" style="height:16rem;" alt="${image.alt}">`;
+}
+
+const paginate = (images) => {
+    image_container.innerHTML = images.map((image, index) => `<img src="${image.path}" id="${index}" alt="${image.alt}" class="image__item ${index === 0?'active':''}" onclick="display(${index})" />`).join(" ");
+
+    image_container.addEventListener('click', (event) => {
+        makeActive(event.target.id);
+    })
+}
+
+display(currentImageIndex);
+  // show unselected images
+paginate(images);
+
+
+const next = (increament) => {
+  if(currentImageIndex < lastSlide) {
+      currentImageIndex = currentImageIndex + increament;
+  } 
+  display(currentImageIndex);
+  makeActive(currentImageIndex)
+}
+
+const previous = (decreament) => {
+  if( currentImageIndex > 0 ) {
+      currentImageIndex += decreament;
+  } 
+  display(currentImageIndex);
+  makeActive(currentImageIndex)
+}
+
+const isPositive = number => Math.sign(number) === 1
+
+const up = baseIndex => {
+  const decreament = currentImageIndex + baseIndex;
+  if(decreament < 0 && isPositive(baseIndex)){
+    return "A negative number is required or you have got to the first item";
+  }
+  previous(baseIndex);
+}
+
+const down = baseIndex => {
+  const increament = baseIndex + currentImageIndex;
+  if(increament > lastSlide && isPositive(baseIndex)){
+    return "A positive number is required or you have got to the last item";
+  }
+  next(baseIndex);
+}
+
+function playSound(number) {
+  var sound = document.getElementById(`audio${number}`);
+  sound.play();
+}
+
+const makeActive = (id) => {
+  const currentActiveImage = document.querySelector('.active');
+  currentActiveImage.classList.remove('active');
+ 
+  const activeImage = document.getElementById(id)
+  activeImage.classList.add('active');
+}
+
+const changeImageWithKeys = event => {
+
+  if(event.keyCode === 37) {
+    previous(-1)
+    playSound('');
+
+  }
+  if(event.keyCode === 38) {
+    up(-2);
+    playSound(2);
+  }
+  if(event.keyCode === 39) {
+    next(1);
+    playSound('');
+
+  }
+  if(event.keyCode === 40) {
+    down(2)
+    playSound(2);
+
+  }
+}
+
+// Event listeners
+document.addEventListener('keydown', changeImageWithKeys)
+
+  </script>
+</body>
+</html>
